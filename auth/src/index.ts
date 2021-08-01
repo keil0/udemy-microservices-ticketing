@@ -1,6 +1,7 @@
 import express from "express";
 import "express-async-errors";
 import { json } from "body-parser";
+import mongoose from "mongoose";
 
 // Middlewares
 import { errorHandler } from "./middlewares/error-handlers";
@@ -28,6 +29,23 @@ app.all("*", async (req, res, next) => {
 
 app.use(errorHandler);
 
-app.listen(3000, () => {
-  console.log("Listening on port 3000");
-});
+// Database
+const start = async () => {
+  try {
+    await mongoose.connect("mongodb://auth-mongo-srv:27017/auth", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    });
+
+    console.log("Connected to MongoDB");
+  } catch (e) {
+    console.log(e);
+  }
+
+  app.listen(3000, () => {
+    console.log("Listening on port 3000");
+  });
+};
+
+start();
