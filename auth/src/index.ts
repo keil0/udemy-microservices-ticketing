@@ -29,19 +29,26 @@ app.use(
   })
 );
 
+// Router
 app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
 app.use(signupRouter);
-
 app.all("*", async (req, res, next) => {
   throw new NotFoundError();
 });
 
+// Error handler
 app.use(errorHandler);
 
 // Database
 const start = async () => {
+  // Check environment variables
+  if (!process.env.JWT_KEY) {
+    throw new Error("JWT_KEY must be defined");
+  }
+
+  // Connect to database
   try {
     await mongoose.connect("mongodb://auth-mongo-srv:27017/auth", {
       useNewUrlParser: true,
