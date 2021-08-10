@@ -10,6 +10,12 @@ import {
 // Models
 import { Ticket } from "../models/ticket";
 
+// NATS
+import { natsWrapper } from "../nats-wrapper";
+
+// Publisher
+import { TicketUpdatedPublisher } from "../events/publishers/ticket-updated-publisher";
+
 const router = express.Router();
 
 router.put(
@@ -39,6 +45,13 @@ router.put(
     });
 
     await ticket.save();
+
+    await new TicketUpdatedPublisher(natsWrapper.client).publish({
+      id: ticket.id,
+      title: ticket.title,
+      price: ticket.price,
+      userId: ticket.userId,
+    });
 
     res.send(ticket);
   }
