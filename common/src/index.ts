@@ -24,3 +24,6 @@ export * from "./events/subjects";
 // Events
 export * from "./events/ticket-created-event";
 export * from "./events/ticket-updated-event";
+
+// Types
+export * from "./events/types/order-status";
