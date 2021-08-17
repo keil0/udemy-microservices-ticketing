@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 // Enum
 import { OrderStatus } from "@keil0-tickets/common";
@@ -55,6 +56,10 @@ const orderSchema = new mongoose.Schema<OrderDoc>(
     },
   }
 );
+
+orderSchema.set("versionKey", "version");
+// @ts-ignore
+orderSchema.plugin(updateIfCurrentPlugin);
 
 orderSchema.statics.build = (attrs: OrderAttrs) => {
   return new Order(attrs);
