@@ -11,9 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
-    "bootstrap": "^5.0.2",
-    "next": "^11.0.1",
+    "bootstrap": "^5.0.1",
+    "next": "^10.2.3",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-stripe-checkout": "^2.6.3"
   }
 }
