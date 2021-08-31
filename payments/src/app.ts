@@ -9,6 +9,7 @@ import {
 } from "@keil0-tickets/common";
 
 // Routes
+import { createChargeRouter } from "./routes/new";
 
 const app = express();
 // Traffic pass through proxy ingress-nginx
@@ -27,6 +28,7 @@ app.use(
 app.use(currentUser);
 
 // Router
+app.use(createChargeRouter);
 app.all("*", async (req, res, next) => {
   throw new NotFoundError();
 });
