@@ -13,6 +13,8 @@ import { natsWrapper } from "./nats-wrapper";
 
 // Database
 const start = async () => {
+  console.log("Starting orders service...");
+
   // Check environment variables
   if (!process.env.JWT_KEY) {
     throw new Error("JWT_KEY must be defined");

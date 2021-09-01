@@ -1,5 +1,5 @@
 import { OrderCreatedEvent, OrderStatus } from "@keil0-tickets/common";
-import * as mongoose from "mongoose";
+import mongoose from "mongoose";
 import { Message } from "node-nats-streaming";
 
 // Models
