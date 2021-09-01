@@ -4,7 +4,7 @@ import { app } from "./app";
 
 // Database
 const start = async () => {
-  console.log("Starting auth service..");
+  console.log("Starting auth service....");
   // Check environment variables
   if (!process.env.JWT_KEY) {
     throw new Error("JWT_KEY must be defined");
